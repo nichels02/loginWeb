@@ -24,6 +24,6 @@ public class LoginUIManager : MonoBehaviour
     }
     public void LogIn()
     {
-        login.AttempLogin();
+        login.AttemptLogin();
     }
 }
