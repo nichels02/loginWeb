@@ -7,11 +7,11 @@ public class LoginUIManager : MonoBehaviour
 {
     public InputField userField;
     public InputField passField;
-    HTTPLogin login;
+    public HTTPLogin login;
 
     void Awake()
     {
-        login = FindObjectOfType<HTTPLogin>();
+        //login = FindObjectOfType<HTTPLogin>();
     }
 
     public void SetUserInputText(string text)
@@ -24,6 +24,17 @@ public class LoginUIManager : MonoBehaviour
     }
     public void LogIn()
     {
+        SetUserInputText(userField.text);
+        SetPassInputText(passField.text);
+
         login.AttemptLogin();
+    }
+
+
+    public void outLogin()
+    {
+        userField.text = "";
+        passField.text = "";
+        login.out_http();
     }
 }

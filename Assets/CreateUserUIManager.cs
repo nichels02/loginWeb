@@ -14,11 +14,11 @@ public class CreateUserUIManager : MonoBehaviour
     public InputField username;
     public InputField password;
 
-    HTTPLogin login;
+    public HTTPLogin login;
 
     void Awake()
     {
-        login = FindObjectOfType<HTTPLogin>();
+        //login = FindObjectOfType<HTTPLogin>();
     }
 
     public void SetNameInputText(string text)
@@ -53,8 +53,31 @@ public class CreateUserUIManager : MonoBehaviour
     {
         login.createUser.password = text;
     }
+
     public void CreateUser()
     {
+        SetNameInputText(name.text);
+        SetLastNameInputText(lastname.text);
+        SetSexInputText(sex.text);
+        SetAddressInputText(address.text);
+        SetDNIInputText(dni.text);
+        SetCellphoneInputText(cellphone.text);
+        SetUserNameInputText(username.text);
+        SetPasswordInputText(password.text);
+
         login.AttemptCreateUser();
+    }
+
+    public void outCreate()
+    {
+        name.text = "";
+        lastname.text = "";
+        sex.text = "";
+        address.text = "";
+        dni.text = "";
+        cellphone.text = "";
+        username.text = "";
+        password.text = "";
+        login.out_http();
     }
 }

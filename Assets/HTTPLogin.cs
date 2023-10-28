@@ -17,6 +17,28 @@ public class HTTPLogin : MonoBehaviour
     {
         StartCoroutine("CreateUser");
     }
+    public void out_http()
+    {
+        loginOut();
+        createOut();
+    }
+
+    void loginOut()
+    {
+        loginData.username = "";
+        loginData.password = "";
+    }
+    void createOut()
+    {
+        createUser.name = "";
+        createUser.lastname = "";
+        createUser.sex = "";
+        createUser.address = "";
+        createUser.dni = "";
+        createUser.cellphone = "";
+        createUser.username = "";
+        createUser.password = "";
+    }
 
     IEnumerator Login()
     {
