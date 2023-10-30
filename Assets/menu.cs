@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class menu : MonoBehaviour
 {
+    [SerializeField] GameObject check;
+    [SerializeField] GameObject x;
+
     [SerializeField] GameObject menuPanel;
     [SerializeField] GameObject LoginPanel;
     [SerializeField] GameObject RegistroPanel;
@@ -34,6 +37,9 @@ public class menu : MonoBehaviour
         menuPanel.SetActive(true);
         RegistroPanel.SetActive(false);
         LoginPanel.SetActive(false);
+
+        check.SetActive(false);
+        x.SetActive(false);
     }
 
     public void Openlogin()
