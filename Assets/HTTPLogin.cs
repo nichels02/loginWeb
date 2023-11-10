@@ -9,6 +9,7 @@ public class HTTPLogin : MonoBehaviour
     [SerializeField] GameObject x;
     [SerializeField] public LoginData loginData;
     [SerializeField] public CreateUser createUser;
+    [SerializeField] public LoginResponce loginR;
 
     bool esCorrecto;
     bool corroborar;
@@ -60,7 +61,7 @@ public class HTTPLogin : MonoBehaviour
     {
         string json = JsonUtility.ToJson(loginData);
 
-        using (UnityWebRequest www = new UnityWebRequest("https://www.elalamohospedaje.com/services/login.php", "POST"))
+        using (UnityWebRequest www = new UnityWebRequest("https://www.wildcat.games/services/autorpgservices/login.php", "POST"))
         {
             byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
             www.uploadHandler = new UploadHandlerRaw(bodyRaw);
@@ -81,9 +82,19 @@ public class HTTPLogin : MonoBehaviour
             {
                 string responseText = www.downloadHandler.text;
                 Debug.Log(responseText);
-                x.SetActive(false);
-                check.SetActive(true);
-                esCorrecto = true;
+                loginR = JsonUtility.FromJson<LoginResponce>(responseText);
+                Debug.Log(loginR.success);
+                if (loginR.success == "true")
+                {
+                    x.SetActive(false);
+                    check.SetActive(true);
+                }
+                else
+                {
+                    x.SetActive(true);
+                    check.SetActive(false);
+                }
+
             }
             print(www.result);
             print(UnityWebRequest.Result.Success);
@@ -96,7 +107,7 @@ public class HTTPLogin : MonoBehaviour
     {
         string json = JsonUtility.ToJson(createUser);
 
-        using (UnityWebRequest www = new UnityWebRequest("https://www.elalamohospedaje.com/services/create_user.php", "POST"))
+        using (UnityWebRequest www = new UnityWebRequest("https://www.wildcat.games/services/autorpgservices/login.php", "POST"))
         {
             byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
             www.uploadHandler = new UploadHandlerRaw(bodyRaw);
